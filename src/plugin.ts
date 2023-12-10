@@ -66,6 +66,7 @@ const runImageDiffAfterScreenshot = async (
     e2eSpecDir,
     snapFilenameExtension,
     diffFilenameExtension,
+    useRelativeSnapshotsDir,
   } = options
 
   let snapshotName = path.basename(screenshotConfig.path, PNG_EXT)
@@ -90,9 +91,16 @@ const runImageDiffAfterScreenshot = async (
     '',
   )
 
-  const snapshotsDir = customSnapshotsDir
+  let snapshotsDir = customSnapshotsDir
     ? path.join(process.cwd(), customSnapshotsDir, specDestination)
     : path.join(screenshotsFolder, '..', 'snapshots', specDestination)
+
+  if (useRelativeSnapshotsDir) {
+    const cleanSpecFileName = path.basename(specFileRelativeToRoot).replace(/\..*$/, ''); // Remove extensions
+    const localSnapsFolder = path.join(specFileRelativeToRoot, '..', 'snapshots', cleanSpecFileName); 
+    snapshotsDir = localSnapsFolder;
+  }
+
 
   const snapshotNameFullPath = path.join(
     snapshotsDir,

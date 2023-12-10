@@ -40,6 +40,7 @@ export type CypressImageSnapshotOptions = Partial<
   e2eSpecDir?: string
   snapFilenameExtension?: string
   diffFilenameExtension?: string
+  useRelativeSnapshotsDir?: boolean;
 }
 
 export type Subject =

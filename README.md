@@ -7,24 +7,25 @@ Cypress Image Snapshot binds [jest-image-snapshot](https://github.com/americanex
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Installation](#installation)
-  - [TypeScript](#typescript)
-- [Usage](#usage)
-  - [In your tests](#in-your-tests)
-  - [Options](#options)
-    - [Snapshot paths](#snapshot-paths)
-  - [Updating snapshots](#updating-snapshots)
-  - [Preventing failures](#preventing-failures)
-  - [Requiring snapshots to be present](#requiring-snapshots-to-be-present)
-- [How it works](#how-it-works)
-- [Requirements](#requirements)
-- [Contributing](#contributing)
-  - [Setup](#setup)
-  - [Working on the plugin](#working-on-the-plugin)
-    - [open](#open)
-    - [run](#run)
-      - [Note on environment variables](#note-on-environment-variables)
-- [Forked from `jaredpalmer/cypress-image-snapshot`](#forked-from-jaredpalmercypress-image-snapshot)
+- [Cypress Image Snapshot](#cypress-image-snapshot)
+  - [Installation](#installation)
+    - [TypeScript](#typescript)
+  - [Usage](#usage)
+    - [In your tests](#in-your-tests)
+    - [Options](#options)
+      - [Snapshot paths](#snapshot-paths)
+    - [Updating snapshots](#updating-snapshots)
+    - [Preventing failures](#preventing-failures)
+    - [Requiring snapshots to be present](#requiring-snapshots-to-be-present)
+  - [How it works](#how-it-works)
+  - [Requirements](#requirements)
+  - [Contributing](#contributing)
+    - [Setup](#setup)
+    - [Working on the plugin](#working-on-the-plugin)
+      - [open](#open)
+      - [run](#run)
+        - [Note on environment variables](#note-on-environment-variables)
+  - [Forked from `jaredpalmer/cypress-image-snapshot`](#forked-from-jaredpalmercypress-image-snapshot)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -209,6 +210,40 @@ See more:
 
 - https://github.com/cypress-io/cypress/issues/22159
 - https://github.com/cypress-io/cypress/issues/24052
+
+
+You can use the `useRelativeSnapshotsDir` option to save the snapshots folder in the same directory as your test. E.g.: `all-tests/my-test.cy.ts` will save the snapshots in `all-tests/snapshots/my-test/[screenshots here]`.
+
+
+```ts
+addMatchImageSnapshotCommand({
+  useRelativeSnapshotsDir: true,
+})
+```
+
+Example output in a project:
+
+```
+cypress
+├── e2e
+│  ├── matchImageSnapshot.cy.ts
+│  ├── nested
+│  │  └── test
+│  │    ├── my-test.cy.ts
+│  │    └── snapshots
+│  │       └── my-test
+│  ├── someOtherTest.cy.ts
+│  └── snapshots
+│     ├── matchImageSnapshot
+│     │  ├── matches with just options.snap.png
+│     │  ├── name and options.snap.png
+│     │  ├── no arguments.snap.png
+│     │  └── with custom name.snap.png
+│     └── someOtherTest
+│        └── some other test taking a snapshot.snap.png
+
+```
+
 
 ### Updating snapshots
 
