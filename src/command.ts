@@ -24,6 +24,7 @@ const defaultOptions: SnapshotOptions = {
   failureThresholdType: 'pixel',
   snapFilenameExtension: '.snap',
   diffFilenameExtension: '.diff',
+  useRelativeSnapshotsDir: false,
 }
 
 /**

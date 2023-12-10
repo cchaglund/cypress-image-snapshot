@@ -26,6 +26,7 @@ export type SnapshotOptions = {
   e2eSpecDir: string
   snapFilenameExtension: string
   diffFilenameExtension: string
+  useRelativeSnapshotsDir: boolean
 } & CypressScreenshotOptions &
   MatchImageSnapshotOptions
 
