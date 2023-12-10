@@ -1,7 +1,7 @@
 {
-  "name": "@simonsmith/cypress-image-snapshot",
+  "name": "cypress-image-snapshot-fork-2",
   "packageManager": "yarn@3.5.0",
-  "version": "9.0.1",
+  "version": "9.0.1-2",
   "files": [
     "*.js",
     "*.map",
