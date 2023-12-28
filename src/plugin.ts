@@ -96,11 +96,28 @@ const runImageDiffAfterScreenshot = async (
     : path.join(screenshotsFolder, '..', 'snapshots', specDestination)
 
   if (useRelativeSnapshotsDir) {
-    const cleanSpecFileName = path.basename(specFileRelativeToRoot).replace(/\..*$/, ''); // Remove extensions
-    const localSnapsFolder = path.join(specFileRelativeToRoot, '..', 'snapshots', cleanSpecFileName); 
-    snapshotsDir = localSnapsFolder;
-  }
+    const cleanSpecFileName = path
+      .basename(specFileRelativeToRoot)
+      .replace(/\..*$/, '') // Remove extensions
 
+    let localSnapsFolder = path.join(
+      specFileRelativeToRoot,
+      '..',
+      'snapshots',
+      cleanSpecFileName,
+    )
+
+    if (customSnapshotsDir) {
+      localSnapsFolder = path.join(
+        specFileRelativeToRoot,
+        '..',
+        'snapshots',
+        customSnapshotsDir,
+      )
+    }
+
+    snapshotsDir = localSnapsFolder
+  }
 
   const snapshotNameFullPath = path.join(
     snapshotsDir,
